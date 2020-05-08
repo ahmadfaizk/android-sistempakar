@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sistem Pakar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nilai_threshold">Nilai Threshold</string>
+    <string name="sistem_pakar">Sistem Pakar</string>
+    <string name="description">Indentifikasi Infeksi Sistem Gastro Usus</string>
+    <string name="selanjutnya">Selanjutnya</string>
+</resources>

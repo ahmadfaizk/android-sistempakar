@@ -1,0 +1,2 @@
+rootProject.name='Sistem Pakar'
+include ':app'
