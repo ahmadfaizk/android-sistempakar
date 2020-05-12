@@ -21,9 +21,11 @@ class ResultFragment : Fragment() {
 
     companion object {
         const val EXTRA_QUESTIONS = "extra_questions"
+        const val EXTRA_THRESHOLD = "extra_threshold"
     }
 
     private lateinit var listQuestions : ArrayList<Question>
+    private var threshold = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,11 +39,11 @@ class ResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         listQuestions = arguments?.getParcelableArrayList<Question>(EXTRA_QUESTIONS) as ArrayList<Question>
+        threshold = arguments?.getInt(EXTRA_THRESHOLD) ?: 0
 
-        tv_result.text = listQuestions.toString()
         calculate()
 
-        btnResult.setOnClickListener {
+        btn_test.setOnClickListener {
             it.findNavController().navigate(R.id.action_resultFragment_to_thresholdFragment)
         }
     }
@@ -59,10 +61,23 @@ class ResultFragment : Fragment() {
                         sum++
                     }
                 }
-                sumPercentage += (sum/disease.questions.size)*percentage
+                sumPercentage += sum*percentage/disease.questions.size
             }
             listResult.add(Result(infection.text, sumPercentage))
         }
-        tv_result.text = "${tv_result.text} \n ${listResult.toString()}"
+        showResult(listResult)
+    }
+
+    private fun showResult(results: ArrayList<Result>) {
+        tv_threshold.text = "Nilai Threshold : $threshold%"
+        var result = "Anda Tidak Mengalami Keracunan"
+        results.sort()
+        if (results[0].percentage >= threshold) {
+            result = "%.2f".format(results[0].percentage)
+            result += "% Mengalami ${results[0].text}"
+        }
+        tv_result.text = result
+        val others = results.joinToString("\n")
+        tv_result_others.text = others
     }
 }

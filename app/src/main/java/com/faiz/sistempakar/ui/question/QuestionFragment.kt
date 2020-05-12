@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -49,9 +50,13 @@ class QuestionFragment : Fragment() {
             adapter.setListQuestions(listQuestion)
         }
 
+        val threshold = arguments?.getInt(ResultFragment.EXTRA_THRESHOLD) ?: 0
+
+
         btnNext.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelableArrayList(ResultFragment.EXTRA_QUESTIONS, adapter.getListQuestions())
+            bundle.putInt(ResultFragment.EXTRA_THRESHOLD, threshold)
             it.findNavController().navigate(R.id.action_questionFragment_to_resultFragment, bundle)
         }
     }

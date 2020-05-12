@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
 
 import com.faiz.sistempakar.R
+import com.faiz.sistempakar.ui.result.ResultFragment
 import kotlinx.android.synthetic.main.fragment_threshold.*
 import java.lang.NumberFormatException
 
@@ -30,7 +32,9 @@ class ThresholdFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         btnNext.setOnClickListener {
             if (checkInput()) {
-                it.findNavController().navigate(R.id.action_thresholdFragment_to_questionFragment)
+                val bundle = Bundle()
+                bundle.putInt(ResultFragment.EXTRA_THRESHOLD, threshold)
+                it.findNavController().navigate(R.id.action_thresholdFragment_to_questionFragment, bundle)
             }
         }
     }
@@ -44,7 +48,7 @@ class ThresholdFragment : Fragment() {
             edt_threshold.error = "Nilai Threshold Harus Angka"
             ready = false
         }
-        if (threshold < 0 || threshold > 100) {
+        if (threshold < 1 || threshold > 100) {
             edt_threshold.error = "Nilai Threshold Harus 1-100"
             ready = false
         }

@@ -9,20 +9,25 @@
     tools:context=".ui.threshold.ThresholdFragment">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:text="@string/sistem_pakar"
+        android:textSize="20sp"
         android:textStyle="bold"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
         android:text="@string/description" />
     <EditText
         android:id="@+id/edt_threshold"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:inputType="number"
+        android:gravity="center_horizontal"
         android:hint="@string/nilai_threshold" />
     <Button
         android:id="@+id/btnNext"
@@ -30,4 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/selanjutnya"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/about" />
 </LinearLayout>
